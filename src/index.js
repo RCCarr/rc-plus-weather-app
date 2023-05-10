@@ -65,19 +65,26 @@ datetime.innerHTML = formatDate(currentTime);
 
 //step 2 - after getting HTTP response, display information
 function displayWeatherCondition(response) {
-  console.log(response);
-  document.querySelector("#main-city").innerHTML = response.data.name;
-  document.querySelector("#main-temp").innerHTML = Math.round(
-    response.data.main.temp
+  console.log(response.data);
+
+  let temperatureElement = document.querySelector("#main-temp");
+  let cityElement = document.querySelector("#main-city");
+  let descriptionElement = document.querySelector("#main-description");
+  let humidityElement = document.querySelector("#main-humidity");
+  let windElement = document.querySelector("#main-wind");
+  let compassElement = document.querySelector("#main-compass");
+  let iconElement = document.querySelector("#main-icon");
+
+  temperatureElement.innerHTML = Math.round(response.data.main.temp);
+  cityElement.innerHTML = response.data.name;
+  descriptionElement.innerHTML = response.data.weather[0].main;
+  humidityElement.innerHTML = response.data.main.humidity;
+  windElement.innerHTMLHTML = Math.round(response.data.wind.speed);
+  compassElement.innerHTML = response.data.wind.deg;
+  iconElement.setAttribute(
+    "src",
+    `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
-  document.querySelector("#main-description").innerHTML =
-    response.data.weather[0].main;
-  document.querySelector("#main-humidity").innerHTML =
-    response.data.main.humidity;
-  document.querySelector("#main-wind").innerHTML = Math.round(
-    response.data.wind.speed
-  );
-  document.querySelector("#main-compass").innerHTML = response.data.wind.deg;
 }
 
 //step 4 - on page load show default location - move api call up

@@ -46,8 +46,8 @@ body {
 .current-icon {
   text-align: center;
 }
-.fa-cloud-bolt {
-  font-size: 150px;
+.current-weather-icon {
+  max-width: max-content;
 }
 .main-condition {
   font-size: 40px;
