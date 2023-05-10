@@ -1,23 +1,5 @@
 //SWAPPING CELCIUS & FAHRENHEIT
 
-function showFahrenheit(event) {
-  event.preventDefault();
-  let clickFahrenheit = document.querySelector(".celcius-current-temp");
-  clickFahrenheit.innerHTML = "66°";
-}
-
-let elementFahrenheit = document.querySelector("#fahrenheit-link");
-elementFahrenheit.addEventListener("click", showFahrenheit);
-
-function showCelcius(event) {
-  event.preventDefault();
-  let clickCelcius = document.querySelector(".celcius-current-temp");
-  clickCelcius.innerHTML = "15°";
-}
-
-let elementCelcius = document.querySelector("#celcius-link");
-elementCelcius.addEventListener("click", showCelcius);
-
 //DATE & TIME
 
 let currentTime = new Date();
@@ -75,7 +57,9 @@ function displayWeatherCondition(response) {
   let compassElement = document.querySelector("#main-compass");
   let iconElement = document.querySelector("#main-icon");
 
-  temperatureElement.innerHTML = Math.round(response.data.main.temp);
+  celsiusTemperature = response.data.main.temp;
+
+  temperatureElement.innerHTML = Math.round(celsiusTemperature);
   cityElement.innerHTML = response.data.name;
   descriptionElement.innerHTML = response.data.weather[0].main;
   humidityElement.innerHTML = response.data.main.humidity;
@@ -118,15 +102,37 @@ function handleSubmit(event) {
   //let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
   //axios.get(apiUrl).then(displayWeatherCondition);
 }
+function showFahrenheit(event) {
+  event.preventDefault();
+  let temperatureElement = document.querySelector("#main-temp");
+
+  elementCelsius.classList.remove("active");
+  elementFahrenheit.classList.add("active");
+  let fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
+
+  temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
+}
+
+function showCelsius(event) {
+  event.preventDefault();
+  let temperatureElement = document.querySelector("#main-temp");
+  elementCelsius.classList.add("active");
+  elementFahrenheit.classList.remove("active");
+  temperatureElement.innerHTML = Math.round(celsiusTemperature);
+}
+
+let celsiusTemperature = null;
 
 let searchForm = document.querySelector("#search-area");
 searchForm.addEventListener("submit", handleSubmit);
 
-//step 5 - search button for current location
+let elementFahrenheit = document.querySelector("#fahrenheit-link");
+elementFahrenheit.addEventListener("click", showFahrenheit);
+
+let elementCelsius = document.querySelector("#celsius-link");
+elementCelsius.addEventListener("click", showCelsius);
+
 let currentLocationButton = document.querySelector("#current-location-input");
 currentLocationButton.addEventListener("click", getCurrentLocation);
 
-//step 3 - define default location
 searchCity("Sheffield");
-
-//
