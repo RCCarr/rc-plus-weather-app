@@ -1,0 +1,107 @@
+.container {
+  background: #0763ac;
+  color: white;
+  border-radius: 6px;
+  padding: 20px;
+}
+body {
+  padding: 20px;
+}
+
+.form-control.btn {
+  background-color: white;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.current {
+  text-align: center;
+}
+.latest-weather {
+  text-align: right;
+}
+.current-location {
+  font-size: 40px;
+  font-weight: bold;
+}
+.current-temp {
+  font-size: 50px;
+  font-weight: bold;
+}
+
+.units {
+  font-size: 15px;
+  font-weight: 300;
+  position: relative;
+  top: -25px;
+}
+#celcius-link {
+  color: white;
+  text-decoration: none;
+}
+#fahrenheit-link {
+  color: white;
+  text-decoration: none;
+}
+
+.current-icon {
+  text-align: center;
+}
+.fa-cloud-bolt {
+  font-size: 150px;
+}
+.main-condition {
+  font-size: 40px;
+  font-weight: bold;
+}
+
+#main-humidity {
+  font-weight: bold;
+}
+#main-wind {
+  font-weight: bold;
+}
+#main-compass {
+  font-weight: bold;
+}
+.datetime {
+  color: white;
+  font-weight: bold;
+  margin: 0px auto;
+  text-align: center;
+  padding: 10px 15px;
+  background: red;
+  border: 10px;
+  border-radius: 30px;
+  max-width: 400px;
+}
+.five-day-forcast {
+  text-align: center;
+  padding: 20px;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.2);
+  margin: 20px auto;
+}
+
+.five-day-forcast-col {
+  border: 1px solid black;
+  border-radius: 10px;
+  margin: 5px;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.forecast-icon {
+  font-size: 50px;
+  padding-top: 10px;
+}
+
+.forecast-temp {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+footer {
+  text-align: center;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+}
