@@ -63,7 +63,7 @@ function displayWeatherCondition(response) {
   cityElement.innerHTML = response.data.name;
   descriptionElement.innerHTML = response.data.weather[0].main;
   humidityElement.innerHTML = response.data.main.humidity;
-  windElement.innerHTMLHTML = Math.round(response.data.wind.speed);
+  windElement.innerHTML = Math.round(response.data.wind.speed);
   compassElement.innerHTML = response.data.wind.deg;
   iconElement.setAttribute(
     "src",
