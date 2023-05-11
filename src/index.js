@@ -1,7 +1,3 @@
-//SWAPPING CELCIUS & FAHRENHEIT
-
-//DATE & TIME
-
 let currentTime = new Date();
 
 function formatDate(date) {
@@ -43,9 +39,29 @@ function formatDate(date) {
 let datetime = document.querySelector(".datetime");
 datetime.innerHTML = formatDate(currentTime);
 
-//CITY INPUT & DISPLAY
+function displayForecast() {
+  let forecastElement = document.querySelector("#weather-forecast");
 
-//step 2 - after getting HTTP response, display information
+  let forecastHTML = `<div class="col five-day-forcast-col"`;
+  let days = ["Thursday", "Friday", "Saturday", "Sunday"];
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `
+    <div class="col five-day-forcast-col">
+      <p>
+        <i class="fa-regular fa-sun forecast-icon"></i>
+      </p>
+      <p class="forecast-temp">15°C</p>
+      <p>${day}</p>
+    </div> 
+  `;
+  });
+
+  forecasstHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
+
 function displayWeatherCondition(response) {
   console.log(response.data);
 
@@ -71,14 +87,11 @@ function displayWeatherCondition(response) {
   );
 }
 
-//step 4 - on page load show default location - move api call up
 function searchCity(city) {
   let apiKey = "c8a77112b2faf6684bb4b21a0aa778ae";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayWeatherCondition);
 }
-
-//step 7 - when request received display current location
 
 function searchLocation(position) {
   let apiKey = "c8a77112b2faf6684bb4b21a0aa778ae";
@@ -86,21 +99,15 @@ function searchLocation(position) {
   axios.get(apiUrl).then(displayWeatherCondition);
 }
 
-//step 6 - when button pressed fetch current location from computer
 function getCurrentLocation(event) {
   event.preventDefault();
   navigator.geolocation.getCurrentPosition(searchLocation);
 }
 
-//step 1 - make API call
 function handleSubmit(event) {
   event.preventDefault();
   let city = document.querySelector("#search-input").value;
   searchCity(city);
-  //let apiKey = "c8a77112b2faf6684bb4b21a0aa778ae";
-
-  //let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-  //axios.get(apiUrl).then(displayWeatherCondition);
 }
 function showFahrenheit(event) {
   event.preventDefault();
@@ -136,3 +143,5 @@ let currentLocationButton = document.querySelector("#current-location-input");
 currentLocationButton.addEventListener("click", getCurrentLocation);
 
 searchCity("Sheffield");
+
+displayForecast();
