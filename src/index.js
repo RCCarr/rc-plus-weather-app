@@ -110,7 +110,7 @@ function displayWeatherCondition(response) {
   descriptionElement.innerHTML = response.data.weather[0].main;
   humidityElement.innerHTML = response.data.main.humidity;
   windElement.innerHTML = Math.round(response.data.wind.speed * 2.237);
-  compassElement.innerHTML = response.data.wind.deg;
+  compassElement.innerHTML = getDirectionCoordinates(response.data.wind.deg);
 
   iconElement.setAttribute(
     "src",
@@ -118,6 +118,26 @@ function displayWeatherCondition(response) {
   );
 
   getForecast(response.data.coord);
+}
+
+function getDirectionCoordinates(degrees) {
+  if (degrees >= 21 && degrees <= 70) {
+    return "North East";
+  } else if (degrees >= 71 && degrees <= 110) {
+    return "East";
+  } else if (degrees >= 111 && degrees <= 160) {
+    return "South East";
+  } else if (degrees >= 161 && degrees <= 200) {
+    return "South";
+  } else if (degrees >= 201 && degrees <= 250) {
+    return "South West";
+  } else if (degrees >= 251 && degrees <= 290) {
+    return "West";
+  } else if (degrees >= 291 && degrees <= 340) {
+    return "North West";
+  } else {
+    return "North ";
+  }
 }
 
 function searchCity(city) {
